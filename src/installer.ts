@@ -35,8 +35,7 @@ async function getVersion(version: string) {
 
 // download        
 function composeDownloadUrl(version: string) {
-  const url = `https://github.com/sparna-git/setup_shacl-play/releases/download/${version}/shacl-play-app-${version}-onejar.jar`;
-  
+  const url = `https://github.com/sparna-git/setup_shacl-play/releases/download/${version}/shacl-play-app-${version}-onejar.jar`;  
   return url;
 }
 
