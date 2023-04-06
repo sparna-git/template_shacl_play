@@ -1,11 +1,12 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: Setup SHACL-Play
+description: Setup SHACL-Play CLI in your GitHub Actions workflow
 inputs:
-  milliseconds: # change this
-    required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  github-token:
+    description: Token of SHACL-Play
+    default: ${{ github.token }}
+  shacl-play-version:
+    description: Version of the SHACL-Play CLI to install
+    default: latest
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: node16
+  main: dist/index.js
