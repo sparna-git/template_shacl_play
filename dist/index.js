@@ -13484,11 +13484,11 @@ const installer_1 = __nccwpck_require__(6727);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            return yield (0, installer_1.adquiriSHACL_Play)();
+            yield (0, installer_1.adquiriSHACL_Play)();
         }
         catch (error) {
             if (error instanceof Error) {
-                return core.setFailed(error.message);
+                core.setFailed(error.message);
             }
         }
     });
@@ -13549,7 +13549,6 @@ function getLatestVersion() {
             owner: "sparna-git",
             repo: "shacl-play",
         });
-        core.debug('Get last version: ' + version);
         return version;
     });
 }
@@ -13578,18 +13577,19 @@ function adquiriSHACL_Play() {
         const downloadUrl = composeDownloadUrl(version);
         const cachedPath = tc.find("shacl-play", version);
         core.debug('Actions function ini .......');
-        core.debug('Version SHACL-PLAY:' + version);
-        core.debug('URL SHACL-PLAY:' + downloadUrl);
+        core.debug(version);
+        core.debug(downloadUrl);
         if (cachedPath === "") {
             core.debug('Condition pour trouver la rute du fichier jar..........');
             const downloadedPath = yield tc.downloadTool(downloadUrl);
-            core.debug('Dir downloaded Path ' + downloadedPath);
+            core.debug(downloadedPath);
             const cachedPath = yield tc.cacheDir(downloadedPath, "shacl-play", version);
-            core.debug('Cached Path' + cachedPath);
+            core.debug(cachedPath);
             addPath(cachedPath);
         }
         const shaclPlayPath = yield io.which("shacl-play", true);
-        core.debug('SHACL-Play Path ' + shaclPlayPath);
+        core.debug('SHACL-Play Path ');
+        core.debug(shaclPlayPath);
         yield (0, exec_1.exec)(`java -jar ${shaclPlayPath} ${version} --help`);
     });
 }

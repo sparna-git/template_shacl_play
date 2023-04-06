@@ -4,10 +4,10 @@ import { adquiriSHACL_Play } from "./installer"
 async function run() {
 
     try {
-        return await adquiriSHACL_Play()
+        await adquiriSHACL_Play()
     } catch (error) {
         if (error instanceof Error ){
-            return core.setFailed(error.message);
+        core.setFailed(error.message);
         }        
     }
 }

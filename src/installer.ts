@@ -19,8 +19,6 @@ async function getLatestVersion() {
       repo: "shacl-play",
     });
     
-    core.debug('Get last version: '+version)
-
     return version;
  }
   
@@ -40,7 +38,7 @@ function composeDownloadUrl(version: string) {
 }
 
 
-function addPath(baseDir: string) {
+function addPath(baseDir: string): void {
     core.addPath(path.join(baseDir,'shacl-play','releases'));
 }
 
@@ -50,21 +48,22 @@ export async function adquiriSHACL_Play() : Promise<void> {
     const cachedPath = tc.find("shacl-play",version);
 
     core.debug('Actions function ini .......');
-    core.debug('Version SHACL-PLAY:'+version);
-    core.debug('URL SHACL-PLAY:'+downloadUrl);
+    core.debug(version);
+    core.debug(downloadUrl);
 
     if (cachedPath === ""){
         core.debug('Condition pour trouver la rute du fichier jar..........');
         const downloadedPath = await tc.downloadTool(downloadUrl);
-        core.debug('Dir downloaded Path '+downloadedPath);
+        core.debug(downloadedPath);
         const cachedPath = await tc.cacheDir(downloadedPath,"shacl-play",version);
-        core.debug('Cached Path'+cachedPath);
+        core.debug(cachedPath);
         addPath(cachedPath);
     }
            
     const shaclPlayPath = await io.which("shacl-play",true);
     
-    core.debug('SHACL-Play Path '+shaclPlayPath);
+    core.debug('SHACL-Play Path ');
+    core.debug(shaclPlayPath);
     
     await exec(`java -jar ${shaclPlayPath} ${version} --help`);
 }
