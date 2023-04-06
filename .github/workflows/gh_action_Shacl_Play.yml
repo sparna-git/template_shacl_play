@@ -1,0 +1,19 @@
+# This is a basic workflow that is manually triggered
+
+name: Execute jar of Shacl Play
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    name: execute code ts for call jar librabry
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Run my Action
+        uses: ./
