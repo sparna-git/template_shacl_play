@@ -59,7 +59,6 @@ export async function adquiriSHACL_Play() : Promise<void> {
         
         const cachedPath = await tc.cacheFile(downloadedPath, "shacl-play.jar","shacl-play",version);
         core.debug(cachedPath);
-        core.addPath(cachedPath)
 
         // addPath(cachedPath);
         shaclPlayPath = tc.find("shacl-play",version);

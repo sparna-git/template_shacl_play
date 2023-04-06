@@ -13584,7 +13584,6 @@ function adquiriSHACL_Play() {
             core.debug(downloadedPath);
             const cachedPath = yield tc.cacheFile(downloadedPath, "shacl-play.jar", "shacl-play", version);
             core.debug(cachedPath);
-            core.addPath(cachedPath);
             // addPath(cachedPath);
             shaclPlayPath = tc.find("shacl-play", version);
         }
