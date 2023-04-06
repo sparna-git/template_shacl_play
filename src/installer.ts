@@ -55,8 +55,12 @@ export async function adquiriSHACL_Play() : Promise<void> {
         core.debug('Condition pour trouver la rute du fichier jar..........');
         const downloadedPath = await tc.downloadTool(downloadUrl);
         core.debug(downloadedPath);
-        const cachedPath = await tc.cacheDir(downloadedPath,"shacl-play",version);
+        
+        
+        //const cachedPath = await tc.cacheFile('path/to/exe', 'destFileName.exe', 'myExeName', '1.1.0');
+        const cachedPath = await tc.cacheFile(downloadedPath, "shacl-play.jar","shacl-play",version);
         core.debug(cachedPath);
+
         addPath(cachedPath);
     }
            

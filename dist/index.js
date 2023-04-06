@@ -13583,7 +13583,8 @@ function adquiriSHACL_Play() {
             core.debug('Condition pour trouver la rute du fichier jar..........');
             const downloadedPath = yield tc.downloadTool(downloadUrl);
             core.debug(downloadedPath);
-            const cachedPath = yield tc.cacheDir(downloadedPath, "shacl-play", version);
+            //const cachedPath = await tc.cacheFile('path/to/exe', 'destFileName.exe', 'myExeName', '1.1.0');
+            const cachedPath = yield tc.cacheFile(downloadedPath, "shacl-play.jar", "shacl-play", version);
             core.debug(cachedPath);
             addPath(cachedPath);
         }
