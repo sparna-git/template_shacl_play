@@ -6,7 +6,7 @@ inputs:
     default: ${{ github.token }}
   shacl-play-version:
     description: Version of the SHACL-Play CLI to install
-    default: shacl-play/latest
+    default: latest
 runs:
   using: node16
   main: dist/index.js
