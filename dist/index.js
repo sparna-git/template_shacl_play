@@ -13591,7 +13591,7 @@ function adquiriSHACL_Play() {
         // const shaclPlayPath = await io.which("shacl-play",true);
         core.debug('SHACL-Play Path ');
         core.debug(shaclPlayPath);
-        yield (0, exec_1.exec)(`java -jar ${shaclPlayPath} ${version} --help`);
+        yield (0, exec_1.exec)(`java -jar ${shaclPlayPath}/shacl-play.jar ${version} --help`);
     });
 }
 exports.adquiriSHACL_Play = adquiriSHACL_Play;

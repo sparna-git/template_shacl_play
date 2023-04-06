@@ -70,5 +70,5 @@ export async function adquiriSHACL_Play() : Promise<void> {
     core.debug('SHACL-Play Path ');
     core.debug(shaclPlayPath);
     
-    await exec(`java -jar ${shaclPlayPath} ${version} --help`);
+    await exec(`java -jar ${shaclPlayPath}/shacl-play.jar ${version} --help`);
 }
