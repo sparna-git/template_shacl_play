@@ -45,26 +45,27 @@ function addPath(baseDir: string): void {
 export async function adquiriSHACL_Play() : Promise<void> {
   const version = await getVersion(SHACL_PLAY_VERSION);
   const downloadUrl = composeDownloadUrl(version);
-  const cachedPath = tc.find("shacl-play",version);
+
+  let shaclPlayPath = tc.find("shacl-play",version);
 
     core.debug('Actions function ini .......');
     core.debug(version);
     core.debug(downloadUrl);
 
-    if (cachedPath === ""){
+    if (shaclPlayPath === ""){
         core.debug('Condition pour trouver la rute du fichier jar..........');
         const downloadedPath = await tc.downloadTool(downloadUrl);
         core.debug(downloadedPath);
         
-        
-        //const cachedPath = await tc.cacheFile('path/to/exe', 'destFileName.exe', 'myExeName', '1.1.0');
         const cachedPath = await tc.cacheFile(downloadedPath, "shacl-play.jar","shacl-play",version);
         core.debug(cachedPath);
+        core.addPath(cachedPath)
 
-        addPath(cachedPath);
+        // addPath(cachedPath);
+        shaclPlayPath = tc.find("shacl-play",version);
     }
-           
-    const shaclPlayPath = await io.which("shacl-play",true);
+
+    // const shaclPlayPath = await io.which("shacl-play",true);
     
     core.debug('SHACL-Play Path ');
     core.debug(shaclPlayPath);

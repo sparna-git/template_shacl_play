@@ -13536,7 +13536,6 @@ exports.adquiriSHACL_Play = void 0;
 const core = __importStar(__nccwpck_require__(3722));
 const exec_1 = __nccwpck_require__(9710);
 const github = __importStar(__nccwpck_require__(8408));
-const io = __importStar(__nccwpck_require__(8974));
 const tc = __importStar(__nccwpck_require__(2417));
 const path = __importStar(__nccwpck_require__(1017));
 // Recuperer les parametres d'entrée
@@ -13575,20 +13574,21 @@ function adquiriSHACL_Play() {
     return __awaiter(this, void 0, void 0, function* () {
         const version = yield getVersion(constants_1.SHACL_PLAY_VERSION);
         const downloadUrl = composeDownloadUrl(version);
-        const cachedPath = tc.find("shacl-play", version);
+        let shaclPlayPath = tc.find("shacl-play", version);
         core.debug('Actions function ini .......');
         core.debug(version);
         core.debug(downloadUrl);
-        if (cachedPath === "") {
+        if (shaclPlayPath === "") {
             core.debug('Condition pour trouver la rute du fichier jar..........');
             const downloadedPath = yield tc.downloadTool(downloadUrl);
             core.debug(downloadedPath);
-            //const cachedPath = await tc.cacheFile('path/to/exe', 'destFileName.exe', 'myExeName', '1.1.0');
             const cachedPath = yield tc.cacheFile(downloadedPath, "shacl-play.jar", "shacl-play", version);
             core.debug(cachedPath);
-            addPath(cachedPath);
+            core.addPath(cachedPath);
+            // addPath(cachedPath);
+            shaclPlayPath = tc.find("shacl-play", version);
         }
-        const shaclPlayPath = yield io.which("shacl-play", true);
+        // const shaclPlayPath = await io.which("shacl-play",true);
         core.debug('SHACL-Play Path ');
         core.debug(shaclPlayPath);
         yield (0, exec_1.exec)(`java -jar ${shaclPlayPath} ${version} --help`);
