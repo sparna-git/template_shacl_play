@@ -33,7 +33,7 @@ async function getVersion(version: string) {
 
 // download        
 function composeDownloadUrl(version: string) {
-  const url = `https://github.com/sparna-git/setup_shacl-play/releases/download/${version}/shacl-play-app-${version}-onejar.jar`;  
+  const url = `https://github.com/sparna-git/shacl-play/releases/download/${version}/shacl-play-app-${version}-onejar.jar`;
   return url;
 }
 
@@ -43,9 +43,9 @@ function addPath(baseDir: string): void {
 }
 
 export async function adquiriSHACL_Play() : Promise<void> {
-    const version = await getVersion(SHACL_PLAY_VERSION);
-    const downloadUrl = composeDownloadUrl(version);
-    const cachedPath = tc.find("shacl-play",version);
+  const version = await getVersion(SHACL_PLAY_VERSION);
+  const downloadUrl = composeDownloadUrl(version);
+  const cachedPath = tc.find("shacl-play",version);
 
     core.debug('Actions function ini .......');
     core.debug(version);
